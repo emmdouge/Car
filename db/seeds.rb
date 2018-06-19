@@ -22,7 +22,8 @@ Automobile.create!([
   { id: 3, model: 'Ford', make: 'Taunus', color: 'black', mileage: 300, forsale: true },
   { id: 4, model: 'Cadillac', make: '61', color: 'red', mileage: 100, forsale: false },
   { id: 5, model: 'Fiat', make: '500', color: 'white', mileage: 5, forsale: true },
-  { id: 6, model: 'Chrylser', make: 'Charger', color: 'red', mileage: 5, forsale: true }
+  { id: 6, model: 'Chrylser', make: 'Charger', color: 'red', mileage: 5, forsale: true },
+  { id: 7, model: 'BMW', make: 'Arrow', color: 'blue', mileage: 5, forsale: true }
 ])
 
 Ownership.destroy_all
@@ -38,4 +39,6 @@ Ownership.create!([
   { id: 8, person_id: 3, automobile_id: 3, own: false },
   { id: 9, person_id: 4, automobile_id: 2, own: false },
   { id: 10, person_id: 5, automobile_id: 1, own: false },
+  
+  { id: 11, person_id: 1, automobile_id: 7, own: true },
 ])

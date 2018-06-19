@@ -65,19 +65,24 @@ class OwnershipController < ApplicationController
     def own
         @ownerships = Ownership.where(person_id: params[:person_id], own: true)
 
-        render json: @ownerships
+        if @ownerships.nil?
+            render plain: "This person doesn't own any cars"
+        else
+            automobile_ids = @ownerships.pluck(:automobile_id)
+            @automobiles = Automobile.find(automobile_ids)
+            render json: @automobiles
+        end 
     end
 
     # GET http://localhost:3000/ownership/curr_own/automobile_id
     # Retrieves current owner
     def curr_owner
         @ownership = Ownership.where(automobile_id: params[:automobile_id], own: true).first
-        byebug
         if @ownership.nil?
             render plain: "No one currently owns this car"
         else
             @person = Person.find(@ownership.person_id)
-            render json: @ownership
+            render json: @person
         end       
     end
 end
