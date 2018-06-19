@@ -25,8 +25,9 @@ class PersonController < ApplicationController
        @person = Person.new
        @person.name = params[:name]
        @person.email = params[:email]
-       @person.phone = 1112223333
+       @person.phone = params[:phone]
        @person.save
+       render json: @person
     end
 
     # PATCH http://localhost:3000/person/id

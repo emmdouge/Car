@@ -24,7 +24,9 @@ class OwnershipController < ApplicationController
        @ownership.person_id = params[:person_id]
        @ownership.automobile_id = params[:automobile_id]
        @ownership.own = params[:own]
-       @ownership.save
+       if @ownership.save
+        render json: @ownership
+       end
     end
 
     # PATCH http://localhost:3000/ownership/id
@@ -46,16 +48,12 @@ class OwnershipController < ApplicationController
     def owner_history
         @ownerships = Ownership.where(person_id: params[:person_id])
 
-        puts @ownerships.inspect
-
         render json: @ownerships
     end
 
     # GET http://localhost:3000/ownership/car_history/id
     def car_history
         @ownerships = Ownership.where(automobile_id: params[:automobile_id])
-        
-        puts @ownerships.inspect
 
         render json: @ownerships
     end  
@@ -63,8 +61,6 @@ class OwnershipController < ApplicationController
     # GET http://localhost:3000/ownership/own/id
     def own
         @ownerships = Ownership.where(person_id: params[:person_id], own: true)
-
-        puts @ownerships.inspect
 
         render json: @ownerships
     end
