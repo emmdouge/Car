@@ -37,6 +37,7 @@ class PersonController < ApplicationController
         @person.email = params[:email]
         @person.phone = params[:phone]
         @person.save
+        render json: @person
     end
 
     # DELETE http://localhost:3000/person/id
