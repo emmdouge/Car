@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180619011252) do
+ActiveRecord::Schema.define(version: 20180619043955) do
 
   create_table "automobiles", force: :cascade do |t|
     t.string "model"
@@ -18,6 +18,16 @@ ActiveRecord::Schema.define(version: 20180619011252) do
     t.string "color"
     t.integer "mileage"
     t.boolean "forsale"
+  end
+
+  create_table "ownerships", force: :cascade do |t|
+    t.integer "person_id"
+    t.integer "automobile_id"
+    t.boolean "own"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["automobile_id"], name: "index_ownerships_on_automobile_id"
+    t.index ["person_id"], name: "index_ownerships_on_person_id"
   end
 
   create_table "people", force: :cascade do |t|

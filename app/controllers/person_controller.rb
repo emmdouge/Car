@@ -29,7 +29,7 @@ class PersonController < ApplicationController
        @person.save
     end
 
-    # PATCH http://localhost:3000/person/:id
+    # PATCH http://localhost:3000/person/id
     def update
         @person = Person.find(params[:id])
         @person.name = params[:name]
@@ -38,7 +38,7 @@ class PersonController < ApplicationController
         @person.save
     end
 
-    # DELETE http://localhost:3000/person/:id
+    # DELETE http://localhost:3000/person/id
     def destroy
         @person = Person.find(params[:id])
         @person.destroy

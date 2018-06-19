@@ -29,7 +29,7 @@ class AutomobileController < ApplicationController
        @automobile.save
     end
 
-    # PATCH http://localhost:3000/automobile/:id
+    # PATCH http://localhost:3000/automobile/id
     def update
         @automobile = Automobile.find(params[:id])
         @automobile.model = params[:model]
@@ -40,9 +40,15 @@ class AutomobileController < ApplicationController
         @automobile.save
     end
 
-    # DELETE http://localhost:3000/automobile/:id
+    # DELETE http://localhost:3000/automobile/id
     def destroy
         @automobile = Automobile.find(params[:id])
         @automobile.destroy
+    end
+
+    # GET http://localhost:3000/automobile/sale
+    def sale
+        @automobiles = Automobile.where(forsale: true)
+        render json: @automobiles
     end
 end
