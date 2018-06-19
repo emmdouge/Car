@@ -45,6 +45,7 @@ class AutomobileController < ApplicationController
     # DELETE http://localhost:3000/automobile/id
     def destroy
         @automobile = Automobile.find(params[:id])
+        Ownership.where(automobile_id: @automobile.id).destroy_all
         @automobile.destroy
         render plain: "Destroyed Successfully"
     end

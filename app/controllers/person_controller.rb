@@ -43,6 +43,7 @@ class PersonController < ApplicationController
     # DELETE http://localhost:3000/person/id
     def destroy
         @person = Person.find(params[:id])
+        Ownership.where(person_id: @person.id).destroy_all
         @person.destroy
         render plain: "Destroyed Successfully"
     end
