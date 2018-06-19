@@ -36,12 +36,14 @@ class OwnershipController < ApplicationController
         @ownership.automobile_id = params[:automobile_id]
         @ownership.own = params[:own]
         @ownership.save
+        render json: @ownership
     end
 
     # DELETE http://localhost:3000/ownership/id
     def destroy
         @ownership = Ownership.find(params[:id])
         @ownership.destroy
+        render plain: "Destroyed Successfully"
     end
 
     # GET http://localhost:3000/ownership/owner_history/id

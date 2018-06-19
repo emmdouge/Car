@@ -46,4 +46,23 @@ RSpec.describe "API Person", type: 'request' do
           end
         end
       end
+      
+    describe "DELETE /person/id" do
+      context "with valid parameters" do
+        let(:valid_delete_params) do
+          {
+            id: 1
+          }
+        end
+
+        before(:each) do
+          @person = Person.create!(name: "test", email: "test@test.com", phone: "1112223333")
+        end
+
+        it "delete an existing person" do
+          delete '/person/1', params: valid_delete_params
+          expect(response).to have_http_status :ok
+        end
+      end
+    end
   end

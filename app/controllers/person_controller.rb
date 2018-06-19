@@ -44,5 +44,6 @@ class PersonController < ApplicationController
     def destroy
         @person = Person.find(params[:id])
         @person.destroy
+        render plain: "Destroyed Successfully"
     end
 end

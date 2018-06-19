@@ -27,6 +27,7 @@ class AutomobileController < ApplicationController
        @automobile.milage = params[:milage]
        @automobile.forsale = params[:forsale]
        @automobile.save
+       render json: @automobile
     end
 
     # PATCH http://localhost:3000/automobile/id
@@ -38,12 +39,14 @@ class AutomobileController < ApplicationController
         @automobile.milage = params[:milage]
         @automobile.forsale = params[:forsale]
         @automobile.save
+        render json: @automobile
     end
 
     # DELETE http://localhost:3000/automobile/id
     def destroy
         @automobile = Automobile.find(params[:id])
         @automobile.destroy
+        render plain: "Destroyed Successfully"
     end
 
     # GET http://localhost:3000/automobile/sale
