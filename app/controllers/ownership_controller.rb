@@ -46,24 +46,38 @@ class OwnershipController < ApplicationController
         render plain: "Destroyed Successfully"
     end
 
-    # GET http://localhost:3000/ownership/owner_history/id
+    # GET http://localhost:3000/ownership/owner_history/person_id
     def owner_history
         @ownerships = Ownership.where(person_id: params[:person_id])
 
         render json: @ownerships
     end
 
-    # GET http://localhost:3000/ownership/car_history/id
+    # GET http://localhost:3000/ownership/car_history/automobile_id
     def car_history
         @ownerships = Ownership.where(automobile_id: params[:automobile_id])
 
         render json: @ownerships
     end  
     
-    # GET http://localhost:3000/ownership/own/id
+    # GET http://localhost:3000/ownership/own/person_id
+    # Retrieves all the cars someone owns
     def own
         @ownerships = Ownership.where(person_id: params[:person_id], own: true)
 
         render json: @ownerships
+    end
+
+    # GET http://localhost:3000/ownership/curr_own/automobile_id
+    # Retrieves current owner
+    def curr_owner
+        @ownership = Ownership.where(automobile_id: params[:automobile_id], own: true).first
+        byebug
+        if @ownership.nil?
+            render plain: "No one currently owns this car"
+        else
+            @person = Person.find(@ownership.person_id)
+            render json: @ownership
+        end       
     end
 end
