@@ -58,5 +58,14 @@ class OwnershipController < ApplicationController
         puts @ownerships.inspect
 
         render json: @ownerships
-    end    
+    end  
+    
+    # GET http://localhost:3000/ownership/own/id
+    def own
+        @ownerships = Ownership.where(person_id: params[:person_id], own: true)
+
+        puts @ownerships.inspect
+
+        render json: @ownerships
+    end
 end
